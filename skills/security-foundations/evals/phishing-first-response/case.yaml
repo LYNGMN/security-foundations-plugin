@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: phishing-first-response
+expected_outcome: |
+  First-response steps that isolate before preserving, mapped to SP 800-61r3 and the six CSF 2.0 functions, plus a password policy that matches SP 800-63B Rev.4.

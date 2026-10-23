@@ -1,0 +1,13 @@
+{
+  "name": "security-foundations-marketplace",
+  "owner": {
+    "name": "Youngmin"
+  },
+  "plugins": [
+    {
+      "name": "security-foundations",
+      "source": "./",
+      "description": "Evidence-based security posture diagnosis and control planning (NIST CSF 2.0, ISO/IEC 27001:2022, SLSA v1.2, OWASP Agentic Top 10)."
+    }
+  ]
+}

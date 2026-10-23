@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: kev-patch-vs-soak
+expected_outcome: |
+  The response separates actively exploited critical vulnerabilities (immediate targeted mitigation after signature and provenance checks) from routine updates and plugins (staged soak).

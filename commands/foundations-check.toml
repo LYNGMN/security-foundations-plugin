@@ -1,0 +1,8 @@
+description = "Run the Security Foundations workflow on a system, team or security question"
+prompt = """
+Follow the security-foundations instructions (skills/security-foundations/SKILL.md) for this request: {{args}}
+
+If no request was given, ask in one short message which organization or system is in scope, which data types it handles, and whether the goal is prevention, response readiness, regulatory readiness or AI safety.
+
+Deliver four sections: asset and blind-spot diagnosis, layered control matrix (Layer, Control, Standard reference, Trade-off), executable runbook, and verification with residual risk. Stay read-only: do not open credential files or run destructive commands.
+"""

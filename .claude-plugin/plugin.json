@@ -1,0 +1,20 @@
+{
+  "name": "security-foundations",
+  "version": "1.0.0",
+  "description": "Diagnose and rebuild an organization's security posture from its foundations: asset visibility, least privilege, supply chain integrity, AI agent autonomy, human risk and incident response, with evidence-based control plans.",
+  "author": {
+    "name": "Youngmin"
+  },
+  "keywords": [
+    "security",
+    "nist-csf",
+    "iso-27001",
+    "slsa",
+    "sbom",
+    "zero-trust",
+    "incident-response",
+    "ai-agents",
+    "owasp-agentic",
+    "isms-p"
+  ]
+}
