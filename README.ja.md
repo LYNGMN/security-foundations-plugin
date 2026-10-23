@@ -38,7 +38,7 @@ IT・セキュリティ担当チーム、開発者、起業家、セキュリテ
 | 使っているもの | 所要時間 | 移動先 |
 |---|---|---|
 | Claude アプリ（Web、デスクトップ、モバイル） | 2分 | [Claude アプリ](#claude-app) |
-| ChatGPT | 5分 | [ChatGPT](#chatgpt) |
+| ChatGPT | 2分 | [ChatGPT](#chatgpt) |
 | Gemini（Web） | 5分 | [Gemini](#gemini) |
 | Claude Code | 1分 | [Claude Code](#claude-code) |
 | Gemini CLI | 1分 | [Gemini CLI](#gemini-cli) |
@@ -55,17 +55,14 @@ Claude の有料プランで、コード実行をオンにしている必要が�
 
 ### ChatGPT
 
-GPT を作るには、ChatGPT の有料プランが必要です。
+ChatGPT ではプラグインを使います（カスタム GPT は 2026年12月11日に終了）。ChatGPT の有料プランが必要で、Plus で確認しました。
 
-1. [**security-foundations-chatgpt-kit.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-chatgpt-kit.zip) をダウンロードして解凍します。
-2. [chatgpt.com/gpts/editor](https://chatgpt.com/gpts/editor) を開き、**Configure**（構成）タブを選びます。
-3. **Name**（名前）：`Security Foundations Advisor`
-4. **Description**（説明）：`セキュリティの状態を基礎から診断し、根拠にもとづく対策計画をつくります。`
-5. **Instructions**（指示）：キットの `instructions.md` を開き、すべてコピーして貼り付けます。
-6. **Conversation starters**（会話のきっかけ）：[できること](#できること)にある質問から、2～3個をコピーします。
-7. **Knowledge**（ナレッジ）：キットの `knowledge` フォルダにある4つのファイルをアップロードします。
-8. **Capabilities**（機能）：Web Search（Web 検索）はオンのままにします。ほかは不要です。
-9. **Create**（作成）を選びます。共有したい場合を除いて、**Only me**（自分のみ）を選んでください。
+1. [**security-foundations-chatgpt-plugin.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-chatgpt-plugin.zip) をダウンロードします。解凍はしません。
+2. [chatgpt.com/plugins](https://chatgpt.com/plugins) を開き、**Add**（追加）からプラグインのアーカイブをアップロードする項目を選びます。
+3. ファイルをドロップして **Add plugin**（プラグインを追加）を選び、開いたページで **Install plugin**（プラグインをインストール）を選びます。
+4. チャットで `@Security Foundations Advisor` に続けて質問を入力するか、プラグインページの例の質問を選びます。
+
+あとで更新するときは、プラグインページの **⋯** から新しいファイルを新しいバージョンとしてアップロードします。
 
 ### Gemini
 
@@ -75,9 +72,9 @@ Gemini では Gem に代わってスキルが使われるようになりまし�
 2. [gemini.google.com](https://gemini.google.com) を開き、**Settings → Skills**（設定 → スキル）に進みます。
 3. スキルの読み込みを選び、フォルダ内の `SKILL.md` を選択します。
 4. おすすめ：新しいスキルにカーソルを合わせ、**Skill actions → Replace skill**（スキルの操作 → スキルを置き換え）を選んで、`security-foundations` フォルダごと選びます。参考ファイルも一緒に入ります。
-5. チャットで `/security-foundations` と入力するか、そのままセキュリティの質問をします。内容が合えば Gemini が自動でスキルを使います。
+5. スキルがオンになっているか確認します（置き換えるとオフになることがあります）。チャットでは質問の前に `@security-foundations` を付けると、Gemini がこのスキルを使います。
 
-まだスキル機能がないアカウントでは、[ChatGPT 用キット](#chatgpt)を使って [gemini.google.com/gems/create](https://gemini.google.com/gems/create) で Gem を作ってください。`instructions.md` を貼り付け、`knowledge` の4つのファイルを追加します。
+まだスキル機能がないアカウントでは、[security-foundations-instructions-kit.zip](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-instructions-kit.zip)を使って [gemini.google.com/gems/create](https://gemini.google.com/gems/create) で Gem を作ってください。`instructions.md` を貼り付け、`knowledge` の4つのファイルを追加します。
 
 ### Claude Code
 
@@ -167,7 +164,7 @@ Codex を再起動します。あとで更新するときは、クローンし�
 
 - **助言はしますが、実行はしません。** 計画を設計し、あなたの考えを点検します。システムのスキャン、変更、修正はしません。
 - **専門家の代わりにはなりません。** 実際にインシデントが起きたときは、社内のセキュリティチームやインシデント対応の事業者にも連絡してください。
-- **GPT や Gem は、スキルほど厳密には従いません。** 貼り付けた指示だけに頼るため、ときどき一部を飛ばすことがあります。そのため、4つの部分の形式と安全のルールは指示の本文に直接書いてあります。
+- **Gem や貼り付けた指示は、スキルほど厳密には従いません。** 貼り付けた指示だけに頼るため、ときどき一部を飛ばすことがあります。そのため、4つの部分の形式と安全のルールは指示の本文に直接書いてあります。
 - **データは AI の提供元のもとにとどまります。** このプロジェクトが加えるのは指示だけです。どこにも何も送りません。
 
 ## 評価結果
@@ -194,7 +191,7 @@ skills/security-foundations/
   references/            Standards map, failure modes, incident runbook
 evals/                   Evaluation cases with graders (claude plugin eval)
 commands/                /foundations-check for Claude Code (.md) and Gemini CLI (.toml)
-adapters/                ChatGPT kit: instructions (under 8,000 characters) and guide
+adapters/                ChatGPT plugin manifest; paste-in instructions (under 8,000 characters) for Gems and other chat tools
 AGENTS.md, GEMINI.md     Context files for Codex and Gemini CLI
 gemini-extension.json    Gemini CLI extension manifest
 scripts/                 Validation and packaging

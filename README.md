@@ -38,7 +38,7 @@ Pick the place where you already use AI. No coding is needed for the first three
 | You use | Time | Jump to |
 |---|---|---|
 | Claude app (web, desktop, mobile) | 2 min | [Claude app](#claude-app) |
-| ChatGPT | 5 min | [ChatGPT](#chatgpt) |
+| ChatGPT | 2 min | [ChatGPT](#chatgpt) |
 | Gemini (web) | 5 min | [Gemini](#gemini) |
 | Claude Code | 1 min | [Claude Code](#claude-code) |
 | Gemini CLI | 1 min | [Gemini CLI](#gemini-cli) |
@@ -55,17 +55,14 @@ Requires a paid Claude plan with code execution turned on.
 
 ### ChatGPT
 
-Creating a GPT requires a paid ChatGPT plan.
+ChatGPT now uses plugins (custom GPTs retire on December 11, 2026). Requires a paid ChatGPT plan; tested on Plus.
 
-1. Download [**security-foundations-chatgpt-kit.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-chatgpt-kit.zip) and unzip it.
-2. Go to [chatgpt.com/gpts/editor](https://chatgpt.com/gpts/editor) and open the **Configure** tab.
-3. **Name:** `Security Foundations Advisor`
-4. **Description:** `Diagnoses your security posture from the foundations and builds an evidence-based control plan.`
-5. **Instructions:** open `instructions.md` from the kit, copy everything, and paste it in.
-6. **Conversation starters:** copy two or three of the questions from [What you get](#what-you-get).
-7. **Knowledge:** upload the four files in the kit's `knowledge` folder.
-8. **Capabilities:** keep Web Search on. The others are not needed.
-9. Select **Create**, and choose **Only me** unless you want to share it.
+1. Download [**security-foundations-chatgpt-plugin.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-chatgpt-plugin.zip). Do not unzip it.
+2. Go to [chatgpt.com/plugins](https://chatgpt.com/plugins), select **Add**, and choose the option to upload a plugin archive.
+3. Drop in the file, select **Add plugin**, then **Install plugin** on the page that opens.
+4. In a chat, type `@Security Foundations Advisor` and your question, or pick one of the suggested prompts on the plugin page.
+
+To update later, open the plugin page, select **⋯**, and upload the new file as a new version.
 
 ### Gemini
 
@@ -75,9 +72,9 @@ Gemini now uses skills (they replace Gems). Works in the Gemini web app and the 
 2. Open [gemini.google.com](https://gemini.google.com), then **Settings → Skills**.
 3. Import a skill and pick the `SKILL.md` file inside the folder.
 4. Recommended: hover over the new skill, choose **Skill actions → Replace skill**, and select the whole `security-foundations` folder. This adds the reference files.
-5. Type `/security-foundations` in a chat, or just ask a security question. Gemini also applies the skill on its own when it fits.
+5. Check that the skill is turned on (replacing it can switch it off). In a chat, type `@security-foundations` before your question so Gemini uses it.
 
-If your account does not have skills yet, create a Gem at [gemini.google.com/gems/create](https://gemini.google.com/gems/create) with the [ChatGPT kit](#chatgpt): paste `instructions.md` and add the four `knowledge` files.
+If your account does not have skills yet, create a Gem at [gemini.google.com/gems/create](https://gemini.google.com/gems/create) with the [security-foundations-instructions-kit.zip](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-instructions-kit.zip): paste `instructions.md` and add the four `knowledge` files.
 
 ### Claude Code
 
@@ -167,7 +164,7 @@ Versions and counts were last checked in October 2026. See [standards-map.md](sk
 
 - **It advises; it does not act.** It designs plans and checks your reasoning. It does not scan, change or fix your systems.
 - **Not a substitute for a professional.** For a real incident, also contact your security team or an incident response provider.
-- **A custom GPT or Gem follows it less strictly than a skill.** Those versions rely on pasted instructions, so they may sometimes skip a part. The four-part format and safety rules are written directly into the instructions to keep them consistent.
+- **A Gem or pasted instructions follow it less strictly than a skill.** Those versions rely on pasted instructions, so they may sometimes skip a part. The four-part format and safety rules are written directly into the instructions to keep them consistent.
 - **Your data stays with your AI provider.** This project adds instructions only. It sends nothing anywhere.
 
 ## Evaluation
@@ -194,7 +191,7 @@ skills/security-foundations/
   references/            Standards map, failure modes, incident runbook
 evals/                   Evaluation cases with graders (claude plugin eval)
 commands/                /foundations-check for Claude Code (.md) and Gemini CLI (.toml)
-adapters/                ChatGPT kit: instructions (under 8,000 characters) and guide
+adapters/                ChatGPT plugin manifest; paste-in instructions (under 8,000 characters) for Gems and other chat tools
 AGENTS.md, GEMINI.md     Context files for Codex and Gemini CLI
 gemini-extension.json    Gemini CLI extension manifest
 scripts/                 Validation and packaging

@@ -38,7 +38,7 @@ IT·보안 담당자, 개발자, 보안 전담자가 없는 작은 팀의 대표
 | 쓰는 곳 | 걸리는 시간 | 바로 가기 |
 |---|---|---|
 | Claude 앱 (웹·데스크톱·모바일) | 2분 | [Claude 앱](#claude-앱) |
-| ChatGPT | 5분 | [ChatGPT](#chatgpt) |
+| ChatGPT | 2분 | [ChatGPT](#chatgpt) |
 | Gemini (웹) | 5분 | [Gemini](#gemini) |
 | Claude Code | 1분 | [Claude Code](#claude-code) |
 | Gemini CLI | 1분 | [Gemini CLI](#gemini-cli) |
@@ -55,17 +55,14 @@ Claude 유료 요금제에서 코드 실행 기능이 켜져 있어야 합니다
 
 ### ChatGPT
 
-GPT를 만들려면 ChatGPT 유료 요금제가 필요합니다.
+ChatGPT는 이제 플러그인을 씁니다(맞춤 GPT는 2026년 12월 11일 종료). ChatGPT 유료 요금제가 필요하며 Plus에서 확인했습니다.
 
-1. [**security-foundations-chatgpt-kit.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-chatgpt-kit.zip)을 내려받아 압축을 풉니다.
-2. [chatgpt.com/gpts/editor](https://chatgpt.com/gpts/editor)에 들어가 **구성(Configure)** 탭을 엽니다.
-3. **이름:** `Security Foundations Advisor`
-4. **설명:** `조직의 보안 상태를 기본기부터 진단하고 증거에 기반한 통제 계획을 만들어 줍니다.`
-5. **지침(Instructions):** 키트의 `instructions.md`를 열어 전체를 복사해 붙여 넣습니다.
-6. **대화 스타터(Conversation starters):** [무엇을 받게 되나요](#무엇을-받게-되나요)의 질문 두세 개를 넣습니다.
-7. **지식(Knowledge):** 키트의 `knowledge` 폴더에 있는 파일 4개를 올립니다.
-8. **기능(Capabilities):** 웹 검색만 켜 두면 됩니다.
-9. **만들기(Create)** 를 누르고, 공유할 생각이 없다면 **나만 보기(Only me)** 를 고릅니다.
+1. [**security-foundations-chatgpt-plugin.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-chatgpt-plugin.zip)을 내려받습니다. 압축은 풀지 않습니다.
+2. [chatgpt.com/plugins](https://chatgpt.com/plugins)에서 **추가(Add)** → **플러그인 압축 파일 업로드**를 고릅니다.
+3. 파일을 끌어다 놓고 **플러그인 추가**를 누른 뒤, 열린 페이지에서 **플러그인 설치**를 누릅니다.
+4. 대화창에 `@Security Foundations Advisor`와 질문을 함께 입력하거나, 플러그인 페이지의 예시 질문을 누릅니다.
+
+나중에 업데이트하려면 플러그인 페이지에서 **⋯ → 새 버전 업로드**로 새 파일을 올립니다.
 
 ### Gemini
 
@@ -75,9 +72,9 @@ Gemini는 이제 Gem 대신 스킬을 씁니다. Gemini 웹과 Mac용 Gemini 앱
 2. [gemini.google.com](https://gemini.google.com)에서 **설정(Settings) → 스킬(Skills)** 로 갑니다.
 3. 스킬 가져오기를 고르고 폴더 안의 `SKILL.md` 파일을 선택합니다.
 4. 권장: 새 스킬에 마우스를 올려 **스킬 작업(Skill actions) → 스킬 교체(Replace skill)** 를 누르고 `security-foundations` 폴더 전체를 고릅니다. 참고 파일까지 함께 들어갑니다.
-5. 대화창에 `/security-foundations`를 입력하거나 그냥 보안 질문을 하면 됩니다. 질문이 맞으면 Gemini가 알아서 스킬을 씁니다.
+5. 스킬이 켜져 있는지 확인합니다(교체하면 꺼질 수 있습니다). 대화창에서 질문 앞에 `@security-foundations`를 붙이면 Gemini가 이 스킬을 씁니다.
 
-아직 스킬 메뉴가 없는 계정이라면 [ChatGPT 키트](#chatgpt)로 [gemini.google.com/gems/create](https://gemini.google.com/gems/create)에서 Gem을 만드세요. `instructions.md`를 붙여 넣고 `knowledge` 파일 4개를 추가하면 됩니다.
+아직 스킬 메뉴가 없는 계정이라면 [security-foundations-instructions-kit.zip](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-instructions-kit.zip)로 [gemini.google.com/gems/create](https://gemini.google.com/gems/create)에서 Gem을 만드세요. `instructions.md`를 붙여 넣고 `knowledge` 파일 4개를 추가하면 됩니다.
 
 ### Claude Code
 
@@ -167,7 +164,7 @@ Codex를 다시 시작합니다. 나중에 업데이트하려면 내려받은 �
 
 - **조언만 하고 직접 손대지 않습니다.** 계획을 세우고 판단을 점검해 줄 뿐, 시스템을 스캔하거나 바꾸거나 고치지 않습니다.
 - **전문가를 대신하지 않습니다.** 실제 사고가 났다면 보안팀이나 사고 대응 전문 업체에도 함께 연락하세요.
-- **GPT나 Gem은 스킬보다 덜 엄격하게 따릅니다.** 붙여 넣은 지침에만 의존하기 때문에 가끔 한 부분을 빠뜨릴 수 있습니다. 그래서 네 부분 형식과 안전 규칙은 지침 본문에 직접 넣었습니다.
+- **Gem이나 붙여 넣은 지침은 스킬보다 덜 엄격하게 따릅니다.** 붙여 넣은 지침에만 의존하기 때문에 가끔 한 부분을 빠뜨릴 수 있습니다. 그래서 네 부분 형식과 안전 규칙은 지침 본문에 직접 넣었습니다.
 - **데이터는 쓰시는 AI 서비스에만 머뭅니다.** 이 프로젝트는 지침만 더할 뿐, 어디에도 데이터를 보내지 않습니다.
 
 ## 평가 결과
@@ -194,7 +191,7 @@ skills/security-foundations/
   references/            표준 지도, 실패 유형, 사고 대응 런북
 evals/                   채점 기준이 있는 평가 케이스 (claude plugin eval)
 commands/                Claude Code(.md)와 Gemini CLI(.toml)용 /foundations-check
-adapters/                ChatGPT 키트: 지침(8,000자 이내)과 안내
+adapters/                ChatGPT 플러그인 매니페스트, Gem·기타 채팅 도구용 지침(8,000자 이내)
 AGENTS.md, GEMINI.md     Codex와 Gemini CLI용 컨텍스트 파일
 gemini-extension.json    Gemini CLI 확장 매니페스트
 scripts/                 검증과 패키징

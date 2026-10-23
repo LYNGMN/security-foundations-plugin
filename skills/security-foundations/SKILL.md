@@ -3,7 +3,7 @@ name: security-foundations
 description: Diagnose and rebuild an organization's security posture from its foundations, producing evidence-based control plans. Use whenever the user asks about security posture or audits, secrets and credential hygiene (including requests to read .env files or SSH or API keys, scan for secrets, or install security scanners), asset inventory or shadow IT, legacy systems, least privilege or zero trust, supply chain risk (SBOM, provenance, SLSA), vendor security questionnaires and third-party risk, AI agent or MCP server guardrails, phishing and security training, ransomware or incident first response, or ISO 27001, ISMS-P, NIST CSF, DORA, NIS2 readiness, even if they never say security foundations. Aligned with NIST CSF 2.0, ISO/IEC 27001:2022, SP 800-61r3, SP 800-63B Rev.4, OWASP Agentic Top 10 2026, SLSA v1.2. Do NOT use for offensive exploit development, legal opinions, or executing destructive infrastructure commands.
 compatibility: Advisory skill. Needs no network access or code execution and is designed to stay read-only and non-destructive.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   language: en
 ---
 

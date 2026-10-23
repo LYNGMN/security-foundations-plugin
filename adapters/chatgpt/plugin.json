@@ -1,0 +1,32 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "security-foundations",
+  "version": "1.1.1",
+  "description": "Diagnoses your security posture from the foundations and builds an evidence-based control plan.",
+  "author": {
+    "name": "LYNGMN"
+  },
+  "homepage": "https://github.com/LYNGMN/security-foundations-plugin",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Security Foundations Advisor",
+        "shortDescription": "Evidence-based security plans",
+        "longDescription": "Diagnoses your security posture from the foundations and builds an evidence-based control plan. Every answer has four parts: asset and blind-spot diagnosis, a layered control matrix with standard references, an executable runbook, and verification with residual risk. Aligned with NIST CSF 2.0, ISO/IEC 27001:2022, SP 800-61r3, SP 800-63B Rev.4, OWASP Agentic Top 10 2026 and SLSA v1.2. Advisory only: it never runs changes or reads secrets.",
+        "developerName": "LYNGMN",
+        "category": "Productivity",
+        "capabilities": [
+          "Diagnose security posture and asset gaps",
+          "Design layered controls with standard references",
+          "Write incident first-response runbooks"
+        ],
+        "defaultPrompt": [
+          "An employee opened a phishing attachment and their PC is acting strange. What do we do first?",
+          "We want to connect AI agents and MCP servers to our systems. Design the guardrails and approval steps.",
+          "A critical patch for an actively exploited bug just came out. Should we wait a week because of supply chain risk?"
+        ]
+      }
+    }
+  }
+}

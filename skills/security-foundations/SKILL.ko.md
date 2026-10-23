@@ -3,7 +3,7 @@ name: security-foundations
 description: 조직의 보안 자세를 기본기부터 진단하고 증거 기반 통제 계획으로 재구축한다. 보안 점검·감사, 비밀값·자격 증명 관리(.env나 SSH·API 키를 열어 보라는 요청, 비밀 스캔, 보안 스캐너 설치 요청 포함), 자산 인벤토리·섀도 IT, 레거시 시스템, 최소 권한·제로 트러스트, 공급망(SBOM·출처 증명·SLSA), 벤더 보안 질의서·제3자 위험, AI 에이전트·MCP 서버 가드레일, 피싱·보안 교육, 랜섬웨어·사고 초동 대응, ISO 27001·ISMS-P·NIST CSF·DORA·NIS2 준비를 다룰 때 보안 기본기를 직접 언급하지 않아도 사용한다. NIST CSF 2.0, ISO/IEC 27001:2022, SP 800-61r3, SP 800-63B Rev.4, OWASP Agentic Top 10 2026, SLSA v1.2에 정렬된다. 공격용 익스플로잇 개발, 법률 의견, 파괴적 인프라 명령 실행에는 사용하지 않는다.
 compatibility: 자문형 스킬. 네트워크 접근이나 코드 실행이 필요 없으며 읽기 전용·비파괴로 동작하도록 설계되었다.
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
   language: ko
 ---
 

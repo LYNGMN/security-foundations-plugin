@@ -1,25 +1,18 @@
-# Security Foundations kit for ChatGPT
+# Security Foundations instructions kit
 
-This kit turns a custom GPT into the Security Foundations advisor.
+For chat tools that cannot load a skill or plugin, such as a Gemini Gem on an account without Gemini skills,
+or any assistant with a custom-instructions box.
+
+ChatGPT and Gemini users should install the skill instead:
+ChatGPT uses `security-foundations-chatgpt-plugin.zip`, Gemini uses `security-foundations-skill.zip`
+(both on the release page).
 
 | File | Where it goes |
 |---|---|
-| `instructions.md` | Paste the whole file into the **Instructions** box |
-| `knowledge/` (4 files) | Upload all four as **Knowledge** files |
+| `instructions.md` | Paste the whole file into the instructions box (under 8,000 characters) |
+| `knowledge/` (4 files) | Upload all four as knowledge or reference files, if the tool supports them |
 
-## ChatGPT (custom GPT, paid plan)
-
-1. Open https://chatgpt.com/gpts/editor and select the **Configure** tab.
-2. Name: `Security Foundations Advisor`
-3. Instructions: paste all of `instructions.md`.
-4. Knowledge: upload the four files in `knowledge/`.
-5. Capabilities: keep Web Search on.
-6. Select **Create** and choose who can see it.
-
-## Gemini Gem (accounts without Gemini skills)
-
-Gemini is replacing Gems with skills. If your account has **Settings → Skills**, use
-`security-foundations-skill.zip` from the release page instead. Otherwise:
+## Gemini Gem
 
 1. Open https://gemini.google.com/gems/create
 2. Name: `Security Foundations Advisor`

@@ -38,7 +38,7 @@
 | 你在用 | 用时 | 跳转 |
 |---|---|---|
 | Claude 应用（网页、桌面、手机） | 2 分钟 | [Claude 应用](#claude-app) |
-| ChatGPT | 5 分钟 | [ChatGPT](#chatgpt) |
+| ChatGPT | 2 分钟 | [ChatGPT](#chatgpt) |
 | Gemini（网页版） | 5 分钟 | [Gemini](#gemini) |
 | Claude Code | 1 分钟 | [Claude Code](#claude-code) |
 | Gemini CLI | 1 分钟 | [Gemini CLI](#gemini-cli) |
@@ -55,17 +55,14 @@
 
 ### ChatGPT
 
-创建 GPT 需要付费的 ChatGPT 套餐。
+ChatGPT 现在使用插件（自定义 GPT 将于 2026 年 12 月 11 日停用）。需要付费的 ChatGPT 套餐，已在 Plus 上验证。
 
-1. 下载 [**security-foundations-chatgpt-kit.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-chatgpt-kit.zip) 并解压。
-2. 打开 [chatgpt.com/gpts/editor](https://chatgpt.com/gpts/editor)，进入 **Configure**（配置）标签页。
-3. **Name**（名称）：`Security Foundations Advisor`
-4. **Description**（描述）：`从基础出发诊断你的安全状况，并制定有证据支撑的控制措施计划。`
-5. **Instructions**（指令）：打开工具包里的 `instructions.md`，复制全部内容，粘贴进去。
-6. **Conversation starters**（对话开场白）：从[你会得到什么](#你会得到什么)中复制两三个问题。
-7. **Knowledge**（知识库）：上传工具包 `knowledge` 文件夹里的四个文件。
-8. **Capabilities**（功能）：保持 Web Search（网页搜索）开启。其他的用不到。
-9. 选择 **Create**（创建）。除非你想分享给别人，否则选择 **Only me**（仅自己）。
+1. 下载 [**security-foundations-chatgpt-plugin.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-chatgpt-plugin.zip)，不要解压。
+2. 打开 [chatgpt.com/plugins](https://chatgpt.com/plugins)，选择 **Add**（添加），再选择上传插件压缩包。
+3. 拖入文件，选择 **Add plugin**（添加插件），然后在打开的页面上选择 **Install plugin**（安装插件）。
+4. 在对话中输入 `@Security Foundations Advisor` 加上你的问题，或者点击插件页面上的示例问题。
+
+以后要更新时，打开插件页面，选择 **⋯**，把新文件作为新版本上传。
 
 ### Gemini
 
@@ -75,9 +72,9 @@ Gemini 现在用技能（skills）取代了 Gem。适用于 Gemini 网页版和 
 2. 打开 [gemini.google.com](https://gemini.google.com)，进入 **Settings → Skills**（设置 → 技能）。
 3. 选择导入技能，然后选中文件夹里的 `SKILL.md` 文件。
 4. 建议：把鼠标移到新技能上，选择 **Skill actions → Replace skill**（技能操作 → 替换技能），再选中整个 `security-foundations` 文件夹，这样参考文件也会一起加入。
-5. 在对话中输入 `/security-foundations`，或者直接提出安全问题。问题合适时，Gemini 也会自动使用这个技能。
+5. 确认技能处于开启状态（替换后可能会被关闭）。在对话中，在问题前加上 `@security-foundations`，Gemini 就会使用这个技能。
 
-如果你的账号还没有技能功能，可以用 [ChatGPT 工具包](#chatgpt) 在 [gemini.google.com/gems/create](https://gemini.google.com/gems/create) 创建 Gem：粘贴 `instructions.md`，再添加 `knowledge` 里的四个文件。
+如果你的账号还没有技能功能，可以用 [security-foundations-instructions-kit.zip](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-instructions-kit.zip) 在 [gemini.google.com/gems/create](https://gemini.google.com/gems/create) 创建 Gem：粘贴 `instructions.md`，再添加 `knowledge` 里的四个文件。
 
 ### Claude Code
 
@@ -167,7 +164,7 @@ cp -R security-foundations-plugin/skills/security-foundations ~/.agents/skills/
 
 - **它只提建议，不动手。** 它设计计划，检查你的思路。它不会扫描、修改或修复你的系统。
 - **不能代替专业人员。** 遇到真实的安全事件，还要联系你的安全团队或事件响应服务商。
-- **自定义 GPT 或 Gem 的遵循程度不如技能严格。** 它们只靠粘贴进去的指令运行，所以有时可能会漏掉某个部分。四部分格式和安全规则已经直接写进指令里，以保持输出一致。
+- **Gem 或粘贴的指令的遵循程度不如技能严格。** 它们只靠粘贴进去的指令运行，所以有时可能会漏掉某个部分。四部分格式和安全规则已经直接写进指令里，以保持输出一致。
 - **你的数据留在你的 AI 服务商那里。** 这个项目只提供指令，不会向任何地方发送任何内容。
 
 ## 评估结果
@@ -194,7 +191,7 @@ skills/security-foundations/
   references/            Standards map, failure modes, incident runbook
 evals/                   Evaluation cases with graders (claude plugin eval)
 commands/                /foundations-check for Claude Code (.md) and Gemini CLI (.toml)
-adapters/                ChatGPT kit: instructions (under 8,000 characters) and guide
+adapters/                ChatGPT plugin manifest; paste-in instructions (under 8,000 characters) for Gems and other chat tools
 AGENTS.md, GEMINI.md     Context files for Codex and Gemini CLI
 gemini-extension.json    Gemini CLI extension manifest
 scripts/                 Validation and packaging

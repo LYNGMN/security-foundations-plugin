@@ -3,9 +3,10 @@
 
 Usage: python3 scripts/validate_and_package.py [output_dir]
 
-Writes two files to output_dir (default: dist/):
-  security-foundations-skill.zip         Skill folder for the Claude app and Gemini
-  security-foundations-chatgpt-kit.zip   Custom GPT setup kit (also works for a Gemini Gem)
+Writes three files to output_dir (default: dist/):
+  security-foundations-skill.zip              Skill folder for the Claude app and Gemini
+  security-foundations-chatgpt-plugin.zip     ChatGPT plugin (plugin.json + skill)
+  security-foundations-instructions-kit.zip   Paste-in instructions for a Gemini Gem or other chat tools
 
 Uses only the standard library. Exits non-zero if any check fails.
 Archives are reproducible: entries are sorted and timestamps are fixed.
@@ -62,11 +63,14 @@ def frontmatter(path):
 plugin = load_json(ROOT / ".claude-plugin" / "plugin.json")
 market = load_json(ROOT / ".claude-plugin" / "marketplace.json")
 gemini = load_json(ROOT / "gemini-extension.json")
-check(bool(plugin) and bool(market) and bool(gemini), "all JSON files parse")
+chatgpt = load_json(ROOT / "adapters" / "chatgpt" / "plugin.json")
+check(bool(plugin) and bool(market) and bool(gemini) and bool(chatgpt), "all JSON files parse")
 
 version = plugin.get("version", "")
 check(bool(re.fullmatch(r"\d+\.\d+\.\d+", version)), f"plugin version is semver ({version})")
 check(gemini.get("version") == version, "gemini-extension version matches plugin version")
+check(chatgpt.get("version") == version, "ChatGPT plugin.json version matches plugin version")
+check(chatgpt.get("name") == plugin.get("name"), "ChatGPT plugin.json name matches plugin name")
 check(market.get("plugins", [{}])[0].get("name") == plugin.get("name"), "marketplace lists the plugin by name")
 check(bool(plugin.get("license")), "plugin.json declares a license")
 
@@ -150,6 +154,12 @@ kit_entries = [
     ("security-foundations-kit/README.md", ROOT / "adapters" / "README.md"),
     ("security-foundations-kit/instructions.md", ROOT / "adapters" / "core-instructions.md"),
 ] + [(f"security-foundations-kit/knowledge/{p.name}", p) for p in KNOWLEDGE]
-write_zip(OUT_DIR / "security-foundations-chatgpt-kit.zip", kit_entries)
+write_zip(OUT_DIR / "security-foundations-instructions-kit.zip", kit_entries)
+
+plugin_entries = [
+    ("plugin.json", ROOT / "adapters" / "chatgpt" / "plugin.json"),
+    ("LICENSE", ROOT / "LICENSE"),
+] + [(f"skills/{name}", src) for name, src in skill_entries]
+write_zip(OUT_DIR / "security-foundations-chatgpt-plugin.zip", plugin_entries)
 
 print(f"\nAll checks passed. Version {version}.")
