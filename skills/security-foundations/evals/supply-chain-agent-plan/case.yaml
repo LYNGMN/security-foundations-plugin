@@ -1,4 +1,0 @@
-schema_version: "1.1"
-name: supply-chain-agent-plan
-expected_outcome: |
-  A plan with the four mandatory sections that covers SLSA v1.2 Source and Build tracks, ASI01-ASI10, and keeps the auditing agent credential-free.

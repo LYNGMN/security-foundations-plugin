@@ -2,9 +2,10 @@
 
 | Where you use AI | What to do |
 |---|---|
-| Claude app (web, desktop, mobile) | Download **security-foundations-claude-skill.zip** below. In Claude, open Settings → Capabilities → Skills → Upload skill. |
+| Claude app (web, desktop, mobile) | Download **security-foundations-skill.zip** below. In Claude, open Settings → Capabilities → Skills → Upload skill. |
+| Gemini (web, Mac app) | Unzip **security-foundations-skill.zip**, then in Gemini open Settings → Skills and import `SKILL.md`. |
 | Claude Code | `/plugin marketplace add LYNGMN/security-foundations-plugin` then `/plugin install security-foundations@security-foundations-marketplace` |
-| ChatGPT or Gemini (web) | Download **security-foundations-gpt-gemini-kit.zip** below and follow the README inside. |
+| ChatGPT | Download **security-foundations-chatgpt-kit.zip** below and follow the README inside. |
 | Gemini CLI | `gemini extensions install https://github.com/LYNGMN/security-foundations-plugin` |
 | Codex | See the [README](https://github.com/LYNGMN/security-foundations-plugin#codex). |
 

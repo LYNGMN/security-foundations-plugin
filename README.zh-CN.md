@@ -48,7 +48,7 @@
 
 需要付费的 Claude 套餐，并且已开启代码执行功能。
 
-1. 下载 [**security-foundations-claude-skill.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-claude-skill.zip)。不要解压。
+1. 下载 [**security-foundations-skill.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-skill.zip)。不要解压。
 2. 在 Claude 中打开 **Settings → Capabilities**（设置 → 功能）。
 3. 在 **Skills**（技能）中选择 **Upload skill**（上传技能），然后选中刚下载的文件。
 4. 确认这个技能已打开。然后在任意对话中提出安全问题。问题合适时，Claude 会自己调用这个技能。
@@ -57,7 +57,7 @@
 
 创建 GPT 需要付费的 ChatGPT 套餐。
 
-1. 下载 [**security-foundations-gpt-gemini-kit.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-gpt-gemini-kit.zip) 并解压。
+1. 下载 [**security-foundations-chatgpt-kit.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-chatgpt-kit.zip) 并解压。
 2. 打开 [chatgpt.com/gpts/editor](https://chatgpt.com/gpts/editor)，进入 **Configure**（配置）标签页。
 3. **Name**（名称）：`Security Foundations Advisor`
 4. **Description**（描述）：`从基础出发诊断你的安全状况，并制定有证据支撑的控制措施计划。`
@@ -69,12 +69,15 @@
 
 ### Gemini
 
-1. 下载 [**security-foundations-gpt-gemini-kit.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-gpt-gemini-kit.zip) 并解压。
-2. 打开 [gemini.google.com/gems/create](https://gemini.google.com/gems/create)。
-3. **Name**（名称）：`Security Foundations Advisor`
-4. **Instructions**（指令）：打开工具包里的 `instructions.md`，复制全部内容，粘贴进去。
-5. **Knowledge**（知识库）：添加工具包 `knowledge` 文件夹里的四个文件。
-6. 选择 **Save**（保存），然后和这个 Gem 开始对话。
+Gemini 现在用技能（skills）取代了 Gem。适用于 Gemini 网页版和 Mac 版 Gemini 应用。
+
+1. 下载 [**security-foundations-skill.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-skill.zip) 并解压，会得到一个名为 `security-foundations` 的文件夹。
+2. 打开 [gemini.google.com](https://gemini.google.com)，进入 **Settings → Skills**（设置 → 技能）。
+3. 选择导入技能，然后选中文件夹里的 `SKILL.md` 文件。
+4. 建议：把鼠标移到新技能上，选择 **Skill actions → Replace skill**（技能操作 → 替换技能），再选中整个 `security-foundations` 文件夹，这样参考文件也会一起加入。
+5. 在对话中输入 `/security-foundations`，或者直接提出安全问题。问题合适时，Gemini 也会自动使用这个技能。
+
+如果你的账号还没有技能功能，可以用 [ChatGPT 工具包](#chatgpt) 在 [gemini.google.com/gems/create](https://gemini.google.com/gems/create) 创建 Gem：粘贴 `instructions.md`，再添加 `knowledge` 里的四个文件。
 
 ### Claude Code
 
@@ -85,7 +88,16 @@
 /plugin install security-foundations@security-foundations-marketplace
 ```
 
-开启一个新会话。遇到安全问题时，这个技能会自动运行，你也可以直接调用它：
+开启一个新会话。在 `/` 菜单里会看到两项：
+
+| 条目 | 什么时候用 |
+|---|---|
+| `/security-foundations:foundations-check` | **从这里开始。** 在后面写上要审查的对象；如果什么都不写，它会先问几个确定范围的问题。 |
+| `/security-foundations:security-foundations` | 一般用不到。用平常的话提出安全问题时，技能会自动运行。只有没被自动触发时才直接调用。 |
+
+如果你也把技能上传到了 Claude 应用，桌面应用里可能还会出现第三项 `/anthropic-skills:security-foundations`。那是你 Claude 账号里的同一个技能，在 Claude Code 中可以忽略。
+
+示例：
 
 ```text
 /security-foundations:foundations-check our customer database and its backups
@@ -155,7 +167,7 @@ cp -R security-foundations-plugin/skills/security-foundations ~/.agents/skills/
 
 - **它只提建议，不动手。** 它设计计划，检查你的思路。它不会扫描、修改或修复你的系统。
 - **不能代替专业人员。** 遇到真实的安全事件，还要联系你的安全团队或事件响应服务商。
-- **ChatGPT 和 Gemini 版本的遵循程度不如 Claude 严格。** 这两个版本靠粘贴进去的指令运行，所以有时可能会漏掉某个部分。四部分格式和安全规则已经直接写进了指令里，以保持输出一致。
+- **自定义 GPT 或 Gem 的遵循程度不如技能严格。** 它们只靠粘贴进去的指令运行，所以有时可能会漏掉某个部分。四部分格式和安全规则已经直接写进指令里，以保持输出一致。
 - **你的数据留在你的 AI 服务商那里。** 这个项目只提供指令，不会向任何地方发送任何内容。
 
 ## 贡献者须知
@@ -166,9 +178,9 @@ skills/security-foundations/
   SKILL.md               The skill (English, authoritative)
   SKILL.ko.md            Korean mirror for reviewers
   references/            Standards map, failure modes, incident runbook
-  evals/                 Evaluation cases with graders
+evals/                   Evaluation cases with graders (claude plugin eval)
 commands/                /foundations-check for Claude Code (.md) and Gemini CLI (.toml)
-adapters/                ChatGPT and Gemini instructions (under 8,000 characters) and kit guide
+adapters/                ChatGPT kit: instructions (under 8,000 characters) and guide
 AGENTS.md, GEMINI.md     Context files for Codex and Gemini CLI
 gemini-extension.json    Gemini CLI extension manifest
 scripts/                 Validation and packaging
@@ -183,7 +195,7 @@ python3 scripts/validate_and_package.py
 在 Claude Code 中运行评测用例：
 
 ```bash
-claude plugin eval . --eval-dir skills/security-foundations/evals
+claude plugin eval .
 ```
 
 欢迎提交 Pull Request。请让 `SKILL.md`、`SKILL.ko.md` 和 `adapters/core-instructions.md` 保持一致，并在发起 PR 之前运行验证脚本。推送与 `.claude-plugin/plugin.json` 中版本号一致的 `v*` 标签后，会自动创建发布版本，发布说明由 GitHub 生成。

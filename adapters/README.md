@@ -1,6 +1,6 @@
-# Security Foundations kit for ChatGPT and Gemini
+# Security Foundations kit for ChatGPT
 
-This kit turns ChatGPT or Gemini into the Security Foundations advisor.
+This kit turns a custom GPT into the Security Foundations advisor.
 
 | File | Where it goes |
 |---|---|
@@ -16,7 +16,10 @@ This kit turns ChatGPT or Gemini into the Security Foundations advisor.
 5. Capabilities: keep Web Search on.
 6. Select **Create** and choose who can see it.
 
-## Gemini (Gem)
+## Gemini Gem (accounts without Gemini skills)
+
+Gemini is replacing Gems with skills. If your account has **Settings → Skills**, use
+`security-foundations-skill.zip` from the release page instead. Otherwise:
 
 1. Open https://gemini.google.com/gems/create
 2. Name: `Security Foundations Advisor`

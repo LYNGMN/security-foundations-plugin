@@ -25,7 +25,7 @@ Release assets are built by GitHub Actions from the tagged commit and carry a si
 With the GitHub CLI you can confirm a download came from this repository's workflow:
 
 ```bash
-gh attestation verify security-foundations-claude-skill.zip --repo LYNGMN/security-foundations-plugin
+gh attestation verify security-foundations-skill.zip --repo LYNGMN/security-foundations-plugin
 ```
 
 ## Scope of the guidance

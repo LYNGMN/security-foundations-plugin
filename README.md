@@ -48,7 +48,7 @@ Pick the place where you already use AI. No coding is needed for the first three
 
 Requires a paid Claude plan with code execution turned on.
 
-1. Download [**security-foundations-claude-skill.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-claude-skill.zip). Do not unzip it.
+1. Download [**security-foundations-skill.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-skill.zip). Do not unzip it.
 2. In Claude, open **Settings → Capabilities**.
 3. In **Skills**, choose **Upload skill** and pick the file you downloaded.
 4. Make sure the skill is switched on. Then ask a security question in any chat. Claude uses the skill on its own when the question fits.
@@ -57,7 +57,7 @@ Requires a paid Claude plan with code execution turned on.
 
 Creating a GPT requires a paid ChatGPT plan.
 
-1. Download [**security-foundations-gpt-gemini-kit.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-gpt-gemini-kit.zip) and unzip it.
+1. Download [**security-foundations-chatgpt-kit.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-chatgpt-kit.zip) and unzip it.
 2. Go to [chatgpt.com/gpts/editor](https://chatgpt.com/gpts/editor) and open the **Configure** tab.
 3. **Name:** `Security Foundations Advisor`
 4. **Description:** `Diagnoses your security posture from the foundations and builds an evidence-based control plan.`
@@ -69,12 +69,15 @@ Creating a GPT requires a paid ChatGPT plan.
 
 ### Gemini
 
-1. Download [**security-foundations-gpt-gemini-kit.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-gpt-gemini-kit.zip) and unzip it.
-2. Go to [gemini.google.com/gems/create](https://gemini.google.com/gems/create).
-3. **Name:** `Security Foundations Advisor`
-4. **Instructions:** open `instructions.md` from the kit, copy everything, and paste it in.
-5. **Knowledge:** add the four files in the kit's `knowledge` folder.
-6. Select **Save**, then start a chat with the Gem.
+Gemini now uses skills (they replace Gems). Works in the Gemini web app and the Gemini app on Mac.
+
+1. Download [**security-foundations-skill.zip**](https://github.com/LYNGMN/security-foundations-plugin/releases/latest/download/security-foundations-skill.zip) and unzip it. You get a folder named `security-foundations`.
+2. Open [gemini.google.com](https://gemini.google.com), then **Settings → Skills**.
+3. Import a skill and pick the `SKILL.md` file inside the folder.
+4. Recommended: hover over the new skill, choose **Skill actions → Replace skill**, and select the whole `security-foundations` folder. This adds the reference files.
+5. Type `/security-foundations` in a chat, or just ask a security question. Gemini also applies the skill on its own when it fits.
+
+If your account does not have skills yet, create a Gem at [gemini.google.com/gems/create](https://gemini.google.com/gems/create) with the [ChatGPT kit](#chatgpt): paste `instructions.md` and add the four `knowledge` files.
 
 ### Claude Code
 
@@ -85,7 +88,16 @@ Type these two lines in Claude Code:
 /plugin install security-foundations@security-foundations-marketplace
 ```
 
-Start a new session. The skill runs automatically on security questions, or call it directly:
+Start a new session. In the `/` menu you will see two entries:
+
+| Entry | Use it when |
+|---|---|
+| `/security-foundations:foundations-check` | **Start here.** Add what to review, or run it alone and it asks a few scoping questions first. |
+| `/security-foundations:security-foundations` | Rarely needed. The skill runs on its own when you ask a security question in plain words. Call it only if it was not picked up. |
+
+If you also uploaded the skill to the Claude app, a third entry, `/anthropic-skills:security-foundations`, may appear in the desktop app. It is the same skill from your Claude account and can be ignored in Claude Code.
+
+Example:
 
 ```text
 /security-foundations:foundations-check our customer database and its backups
@@ -155,7 +167,7 @@ Versions and counts were last checked in October 2026. See [standards-map.md](sk
 
 - **It advises; it does not act.** It designs plans and checks your reasoning. It does not scan, change or fix your systems.
 - **Not a substitute for a professional.** For a real incident, also contact your security team or an incident response provider.
-- **ChatGPT and Gemini follow it less strictly than Claude.** Those versions rely on pasted instructions, so they may sometimes skip a part. The four-part format and safety rules are written directly into the instructions to keep them consistent.
+- **A custom GPT or Gem follows it less strictly than a skill.** Those versions rely on pasted instructions, so they may sometimes skip a part. The four-part format and safety rules are written directly into the instructions to keep them consistent.
 - **Your data stays with your AI provider.** This project adds instructions only. It sends nothing anywhere.
 
 ## For contributors
@@ -166,9 +178,9 @@ skills/security-foundations/
   SKILL.md               The skill (English, authoritative)
   SKILL.ko.md            Korean mirror for reviewers
   references/            Standards map, failure modes, incident runbook
-  evals/                 Evaluation cases with graders
+evals/                   Evaluation cases with graders (claude plugin eval)
 commands/                /foundations-check for Claude Code (.md) and Gemini CLI (.toml)
-adapters/                ChatGPT and Gemini instructions (under 8,000 characters) and kit guide
+adapters/                ChatGPT kit: instructions (under 8,000 characters) and guide
 AGENTS.md, GEMINI.md     Context files for Codex and Gemini CLI
 gemini-extension.json    Gemini CLI extension manifest
 scripts/                 Validation and packaging
@@ -183,7 +195,7 @@ python3 scripts/validate_and_package.py
 Run the evaluation cases in Claude Code:
 
 ```bash
-claude plugin eval . --eval-dir skills/security-foundations/evals
+claude plugin eval .
 ```
 
 Pull requests are welcome. Keep `SKILL.md`, `SKILL.ko.md` and `adapters/core-instructions.md` in agreement, and run the validator before opening a PR. Releases are created automatically when a `v*` tag matching the version in `.claude-plugin/plugin.json` is pushed; release notes are generated by GitHub.

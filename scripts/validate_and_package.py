@@ -4,8 +4,8 @@
 Usage: python3 scripts/validate_and_package.py [output_dir]
 
 Writes two files to output_dir (default: dist/):
-  security-foundations-claude-skill.zip  Claude app upload (the skill folder)
-  security-foundations-gpt-gemini-kit.zip ChatGPT GPT / Gemini Gem setup kit
+  security-foundations-skill.zip         Skill folder for the Claude app and Gemini
+  security-foundations-chatgpt-kit.zip   Custom GPT setup kit (also works for a Gemini Gem)
 
 Uses only the standard library. Exits non-zero if any check fails.
 Archives are reproducible: entries are sorted and timestamps are fixed.
@@ -62,13 +62,11 @@ def frontmatter(path):
 plugin = load_json(ROOT / ".claude-plugin" / "plugin.json")
 market = load_json(ROOT / ".claude-plugin" / "marketplace.json")
 gemini = load_json(ROOT / "gemini-extension.json")
-evals = load_json(SKILL_DIR / "evals" / "evals.json")
-check(bool(plugin) and bool(market) and bool(gemini) and bool(evals), "all JSON files parse")
+check(bool(plugin) and bool(market) and bool(gemini), "all JSON files parse")
 
 version = plugin.get("version", "")
 check(bool(re.fullmatch(r"\d+\.\d+\.\d+", version)), f"plugin version is semver ({version})")
 check(gemini.get("version") == version, "gemini-extension version matches plugin version")
-check(evals.get("version") == version, "evals.json version matches plugin version")
 check(market.get("plugins", [{}])[0].get("name") == plugin.get("name"), "marketplace lists the plugin by name")
 check(bool(plugin.get("license")), "plugin.json declares a license")
 
@@ -98,6 +96,12 @@ for needle in ("Isolate", "ASI01-ASI10", "SLSA v1.2", "STOP RULES"):
 for fname in ("AGENTS.md", "GEMINI.md", "LICENSE", "SECURITY.md", "adapters/README.md",
               "commands/foundations-check.md", "commands/foundations-check.toml"):
     check((ROOT / fname).exists(), f"{fname} exists")
+
+# --- evaluation cases ---------------------------------------------------------
+cases = sorted(p.parent for p in (ROOT / "evals").glob("*/prompt.md"))
+check(len(cases) >= 5, f"evals/ has {len(cases)} cases")
+for case in cases:
+    check(any((case / "graders").glob("*.md")), f"evals/{case.name} has graders")
 
 # --- documentation -----------------------------------------------------------
 for fname in LANGUAGES:
@@ -137,14 +141,15 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 skill_entries = [
     (f"security-foundations/{p.relative_to(SKILL_DIR).as_posix()}", p)
     for p in SKILL_DIR.rglob("*")
-    if p.is_file() and "evals" not in p.relative_to(SKILL_DIR).parts and p.name != ".DS_Store"
+    if p.is_file()
+    and p.name not in {".DS_Store", "SKILL.ko.md"}  # one SKILL file per upload
 ]
-write_zip(OUT_DIR / "security-foundations-claude-skill.zip", skill_entries)
+write_zip(OUT_DIR / "security-foundations-skill.zip", skill_entries)
 
 kit_entries = [
     ("security-foundations-kit/README.md", ROOT / "adapters" / "README.md"),
     ("security-foundations-kit/instructions.md", ROOT / "adapters" / "core-instructions.md"),
 ] + [(f"security-foundations-kit/knowledge/{p.name}", p) for p in KNOWLEDGE]
-write_zip(OUT_DIR / "security-foundations-gpt-gemini-kit.zip", kit_entries)
+write_zip(OUT_DIR / "security-foundations-chatgpt-kit.zip", kit_entries)
 
 print(f"\nAll checks passed. Version {version}.")
