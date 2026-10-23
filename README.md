@@ -170,6 +170,20 @@ Versions and counts were last checked in October 2026. See [standards-map.md](sk
 - **A custom GPT or Gem follows it less strictly than a skill.** Those versions rely on pasted instructions, so they may sometimes skip a part. The four-part format and safety rules are written directly into the instructions to keep them consistent.
 - **Your data stays with your AI provider.** This project adds instructions only. It sends nothing anywhere.
 
+## Evaluation
+
+Measured in October 2026 with `claude plugin eval`: 9 cases, each run 3 times with and without the skill (Claude Code 2.1.303, Claude Haiku as the judge).
+
+| | With the skill | Without |
+|---|---|---|
+| Average score | **98%** | 51% |
+| Skill used when it should be | 24 of 24 runs | — |
+| Skill stayed out of a non-security question | 3 of 3 runs | — |
+
+Largest gains: supply chain and agent plan (100% vs 7%), approving an XDR purchase (100% vs 0%), unattended agent deployment (100% vs 20%), phishing first response (93% vs 27%).
+
+Two single-run misses remain: once the judge did not credit a phishing answer's CSF 2.0 mapping, and once a Korean answer was judged light on named owners. Scores from a model judge vary from run to run. The cases are in [evals/](evals/), and you can run them yourself (see below).
+
 ## For contributors
 
 ```text

@@ -1,9 +1,9 @@
 ---
 name: security-foundations
-description: Diagnose and rebuild an organization's security posture from its foundations, producing evidence-based control plans. Use whenever the user asks about security posture or audits, asset inventory or shadow IT, legacy systems, least privilege or zero trust, supply chain risk (SBOM, provenance, SLSA, vendors), AI agent or MCP server guardrails, phishing and security training, ransomware or incident first response, or ISO 27001, ISMS-P, NIST CSF, DORA, NIS2 readiness, even if they never say security foundations. Aligned with NIST CSF 2.0, ISO/IEC 27001:2022, SP 800-61r3, SP 800-63B Rev.4, OWASP Agentic Top 10 2026, SLSA v1.2. Do NOT use for offensive exploit development, legal opinions, or executing destructive infrastructure commands.
+description: Diagnose and rebuild an organization's security posture from its foundations, producing evidence-based control plans. Use whenever the user asks about security posture or audits, secrets and credential hygiene (including requests to read .env files or SSH or API keys, scan for secrets, or install security scanners), asset inventory or shadow IT, legacy systems, least privilege or zero trust, supply chain risk (SBOM, provenance, SLSA), vendor security questionnaires and third-party risk, AI agent or MCP server guardrails, phishing and security training, ransomware or incident first response, or ISO 27001, ISMS-P, NIST CSF, DORA, NIS2 readiness, even if they never say security foundations. Aligned with NIST CSF 2.0, ISO/IEC 27001:2022, SP 800-61r3, SP 800-63B Rev.4, OWASP Agentic Top 10 2026, SLSA v1.2. Do NOT use for offensive exploit development, legal opinions, or executing destructive infrastructure commands.
 compatibility: Advisory skill. Needs no network access or code execution and is designed to stay read-only and non-destructive.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   language: en
 ---
 
@@ -134,7 +134,7 @@ Knowledge change is not behavior change.
 
 ### Rule 8 — Contain and preserve before analyzing
 
-Align incident response to NIST SP 800-61r3, which maps response across the six CSF 2.0 functions rather than a standalone lifecycle. In every incident answer, show that mapping by stating what Govern, Identify, Protect, Detect, Respond, and Recover each contribute.
+Align incident response to NIST SP 800-61r3, which maps response across the six CSF 2.0 functions rather than a standalone lifecycle. Every incident answer includes a block headed **CSF 2.0 mapping (NIST SP 800-61r3)** with exactly six labelled lines, one each for Govern, Identify, Protect, Detect, Respond, and Recover, saying what that function contributes to this incident. Never use the legacy four-phase lifecycle.
 
 Within Respond and Recover, enforce this order:
 
@@ -208,15 +208,18 @@ A response is complete only when all four sections exist:
 
 1. **Asset and blind-spot diagnosis** — a bullet list of unregistered assets, legacy debt, agent risks, and obligations without owners.
 2. **Layered control matrix** — a Markdown table with columns `Layer`, `Control`, `Standard reference`, `Trade-off`.
-3. **Executable runbook** — numbered, observable steps. If an incident is involved, isolation must appear before preservation.
+3. **Executable runbook** — numbered, observable steps. If an incident is involved, isolation must appear before preservation, and the CSF 2.0 mapping block from Rule 8 is included.
 4. **Verification and residual risk** — what remains unmitigated and how each control will be tested.
 
 A third party must be able to mark each section pass or fail without asking clarifying questions.
 
+Use these four sections even when context is missing or the question looks small (a yes/no question, an approval request, a request in another language). Fill gaps with explicitly labelled assumptions, give the provisional answer, and list the facts that would change it at the end. Never reply with only clarifying questions. In other languages, translate the section titles but keep the matrix columns recognisable (for example `Layer | Control | Standard reference | Trade-off`).
+
 ## Stop rules
 
-- Stop and ask when asked to approve a production architecture without data sensitivity or deployment context.
-- Stop and refuse when asked to read `.env`, credential stores, or private keys, or to install unverified packages without approval.
+- Do not approve a production architecture or purchase without data sensitivity and deployment context. Give a conditional answer in the four sections, state the assumptions, and list what must be confirmed before approval.
+- Stop and refuse when asked to read `.env`, credential stores, or private keys, even when the requester says they own them or authorizes it. Do not search for, open, or offer to open such files later, and do not ask for their contents. Offer checks that never expose a value instead: confirm the files are gitignored, scan history with a verified scanner the user runs, review a redacted config, or rotate keys suspected of exposure.
+- Stop and refuse to install a package that is not clearly the official, verified tool. Treat unfamiliar variants of well-known security tool names as possible typosquats and point to the official source, publisher, and signature.
 - Stop and refuse when asked to generate live malware, bypass authentication, or execute destructive commands.
 - Stop and state the gap when a required verification cannot be run. Do not assert safety without evidence.
 - Stop and correct when a citation cannot be verified. Do not invent standard numbers or statistics.
