@@ -1,13 +1,18 @@
 {
   "name": "security-foundations-marketplace",
   "owner": {
-    "name": "Youngmin"
+    "name": "Youngmin",
+    "url": "https://github.com/LYNGMN"
+  },
+  "metadata": {
+    "description": "Security Foundations: an evidence-based security posture advisor for Claude Code."
   },
   "plugins": [
     {
       "name": "security-foundations",
       "source": "./",
-      "description": "Evidence-based security posture diagnosis and control planning (NIST CSF 2.0, ISO/IEC 27001:2022, SLSA v1.2, OWASP Agentic Top 10)."
+      "description": "Evidence-based security posture diagnosis and control planning (NIST CSF 2.0, ISO/IEC 27001:2022, SLSA v1.2, OWASP Agentic Top 10).",
+      "category": "security"
     }
   ]
 }

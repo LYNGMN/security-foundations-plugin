@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "Diagnose and rebuild an organization's security posture from its foundations: asset visibility, least privilege, supply chain integrity, AI agent autonomy, human risk and incident response, with evidence-based control plans.",
   "author": {
-    "name": "Youngmin"
+    "name": "Youngmin",
+    "url": "https://github.com/LYNGMN"
   },
+  "homepage": "https://github.com/LYNGMN/security-foundations-plugin",
+  "repository": "https://github.com/LYNGMN/security-foundations-plugin",
+  "license": "MIT",
   "keywords": [
     "security",
     "nist-csf",

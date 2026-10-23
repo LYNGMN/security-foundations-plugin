@@ -37,6 +37,6 @@
 
 Cite a standard externally only after checking its current version at the source.
 
-- Confirmed against the publisher's site when this package was built (Oct 2026): SLSA v1.2 (announced Nov 2025) and MITRE ATLAS v5.4.0 counts (16 tactics, 84 techniques, 56 sub-techniques, Feb 2026).
-- Not independently re-checked in this build: all other rows. Treat versions and counts as starting points and re-verify before they appear in an audit report or board paper.
-- No published framework named SHIELD could be found, so that row was replaced by a neutral internal checklist. Do not cite it as a standard.
+- Last checked against the publisher's site in October 2026: SLSA v1.2 (announced November 2025) and the MITRE ATLAS v5.4.0 counts (16 tactics, 84 techniques, 56 sub-techniques, February 2026).
+- Other rows are starting points. Re-verify their versions and counts before they appear in an audit report or board paper.
+- The agent execution safety row is an internal checklist, not a published standard. Do not cite it as one.
