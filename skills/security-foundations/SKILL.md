@@ -5,6 +5,7 @@ compatibility: Advisory skill. Needs no network access or code execution and is 
 metadata:
   version: "1.1.1"
   language: en
+argument-hint: "[점검할 시스템이나 보안 질문]"
 ---
 
 # Security Foundations
