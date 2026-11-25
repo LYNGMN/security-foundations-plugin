@@ -75,7 +75,7 @@ check(market.get("plugins", [{}])[0].get("name") == plugin.get("name"), "marketp
 check(bool(plugin.get("license")), "plugin.json declares a license")
 
 # --- skill files -----------------------------------------------------------
-allowed = {"name", "description", "license", "allowed-tools", "metadata", "compatibility"}
+allowed = {"name", "description", "license", "allowed-tools", "metadata", "compatibility", "argument-hint"}
 for fname in ("SKILL.md", "SKILL.ko.md"):
     fm = frontmatter(SKILL_DIR / fname)
     check(fm is not None, f"{fname} has YAML frontmatter")
